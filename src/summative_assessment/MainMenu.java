@@ -44,10 +44,11 @@ public class MainMenu {
     }
 
     private void viewStockList() {
-        for (int i = 0; i < stockList.size(); i++) {
-            System.out.println(stockList.get(i));
-            System.out.println();
+        for (StockItem i : stockList) {
+            System.out.println("ID [" + i.productID + "] - Amount [" + i.manufacturer +
+                    "] - Name [" + i.name + "] - Price[" + i.price + "] - Stock [" + i.numberInStock + "]");
         }
+
         mainMenu();
     }
 
