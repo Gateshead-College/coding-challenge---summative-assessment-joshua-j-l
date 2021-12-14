@@ -7,6 +7,7 @@ public class MainMenu {
 
     ArrayList<StockItem> stockList = new ArrayList();
     Scanner scn = new Scanner(System.in);
+    int editUser = 0;
 
     public static void main(String[] args) {
 
@@ -39,10 +40,16 @@ public class MainMenu {
                 addItem();
                 break;
             case 3:
+                System.out.println("Which item would you like to delete?");
+                System.out.println("Enter item ID");
                 removeItem();
                 break;
             case 4:
-                editItem();
+                editUser = 1;
+                System.out.println("which item would you like to edit?");
+                System.out.println("Enter item ID");
+                removeItem();
+
                 break;
             case 5:
                 System.out.println("Have a nice day!");
@@ -72,24 +79,24 @@ public class MainMenu {
         // System.out.println("enter item ID for deletion.");
         // itemDeletion = (scn.nextLine());
         int index = -1;
-        String itemDeletion = "1";
+        String itemDeletion = (scn.nextLine());
         for (StockItem i : stockList) {
             if (i.productID.equals(itemDeletion)) {
                 index = stockList.indexOf(i);
-                System.out.println("Valid user entered.");
+                System.out.println("Valid ID entered.");
             } else {
             }
         }
-        if (index != -1) {
-            stockList.remove(index); // got errors when this .remove was placed in the first if statement of this method
+        if (index != -1 && editUser == 0) {
+            stockList.remove(index);
             System.out.println("Item ID [" + itemDeletion + "] has been deleted. ");
+        } else if (index != -1 && editUser == 1) {
+            stockList.remove(index);
+            editUser = 0;
+            addItem();
         } else {
             System.out.println("Invalid ID entered");
         }
-        mainMenu();
-    }
-
-    private void editItem() {
         mainMenu();
     }
 
