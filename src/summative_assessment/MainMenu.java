@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class MainMenu {
 
-    ArrayList<String> stockList = new ArrayList();
+    ArrayList<StockItem> stockList = new ArrayList();
     Scanner scn = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -17,13 +17,10 @@ public class MainMenu {
     }
 
     private void populateList() {
-        stockList.add("Diamond");
-        stockList.add("Ruby");
-        stockList.add("Amethyst");
-        stockList.add("Sapphire");
-        stockList.add("Emerald");
-        stockList.add("Opal");
-        stockList.add("Tanzanite");
+        stockList.add(new StockItem("Diamond", 1000, "Wilber Corp", "1", 1));
+        stockList.add(new StockItem("Ruby", 2000, "Wilber Corp", "2", 2));
+        stockList.add(new StockItem("Sapphire", 3000, "Kyogre Inc", "3", 4));
+        stockList.add(new StockItem("Emerald", 4000, "Grune Enterprise", "4", 8));
     }
 
     private void mainMenu() {

@@ -10,8 +10,6 @@ public class ProjectPlan {
 // amend the population data for the stockList
 // amend the output when displaying stock
 
-
-
 // Task 1
 // Create stock ArrayList
 // Populate ArrayList with stock items
