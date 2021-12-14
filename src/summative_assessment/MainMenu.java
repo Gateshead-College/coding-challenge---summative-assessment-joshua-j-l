@@ -13,19 +13,8 @@ public class MainMenu {
     int editUser = 0;
 
     public static void main(String[] args) {
-
         MainMenu startProgram = new MainMenu();
-        startProgram.populateList();
-        startProgram.mainMenu();
-    }
-
-    private void populateList() {
-
-
-        stockList.add(new StockItem("Diamond", 1000, "Wilber Corp", "1", 10));
-        stockList.add(new StockItem("Ruby", 2000, "Wilber Corp", "2", 20));
-        stockList.add(new StockItem("Sapphire", 3000, "Kyogre Inc", "3", 30));
-        stockList.add(new StockItem("Emerald", 4000, "Grune Enterprise", "4", 40));
+        startProgram.importStockList();
     }
 
     private void mainMenu() {
@@ -83,6 +72,7 @@ public class MainMenu {
         System.out.println("please input the number in stock");
         Integer e = Integer.valueOf(scn.nextLine());
         stockList.add(new StockItem(a, b, c, d, e));
+        exportStockList();
         mainMenu();
     }
 
@@ -109,6 +99,7 @@ public class MainMenu {
         } else {
             System.out.println("Invalid ID entered");
         }
+        exportStockList();
         mainMenu();
     }
 
@@ -123,7 +114,7 @@ public class MainMenu {
     public void exportStockList() {
         try {
             BufferedWriter exportList = new BufferedWriter(
-                    new FileWriter("C:\\Users\\joshua.lawlor\\OneDrive - Accenture\\Desktop\\output2.txt"));
+                    new FileWriter("C:\\Users\\joshua.lawlor\\OneDrive - Accenture\\Desktop\\SummativeAssessmentOutput.txt"));
             for (StockItem i : stockList) {
                 String a = i.name + "\n";
                 String b = String.valueOf(i.price) + "\n";
@@ -143,7 +134,7 @@ public class MainMenu {
     public void importStockList() {
         try {
             BufferedReader importList = new BufferedReader(
-                    new FileReader("C:\\Users\\joshua.lawlor\\OneDrive - Accenture\\Desktop\\output2.txt"));
+                    new FileReader("C:\\Users\\joshua.lawlor\\OneDrive - Accenture\\Desktop\\SummativeAssessmentOutput.txt"));
             String s;
             int counter = 1;
             String importName = "Blank";
@@ -165,7 +156,8 @@ public class MainMenu {
                     importProductID = s;
                     counter = 5;
                 } else if (counter == 5) {
-                    importNumberInStock = Integer.parseInt(s);;
+                    importNumberInStock = Integer.parseInt(s);
+                    ;
                     counter = 1;
                     mainImportList.add(new StockItem(importName, importPrice, importManufacturer, importProductID, importNumberInStock));
                 } else {
@@ -176,17 +168,17 @@ public class MainMenu {
             for (StockItem i : mainImportList) {
                 System.out.println("ID [" + i.productID + "] - Amount [" + i.manufacturer +
                         "] - Name [" + i.name + "] - Price [" + i.price + "] - Stock [" + i.numberInStock + "]");
-
             }
             System.out.println(mainImportList.size());
-
-
         } catch (Exception ex) {
-            return;
+            stockList.add(new StockItem("Diamond", 1000, "Wilber Corp", "1", 10));
+            stockList.add(new StockItem("Ruby", 2000, "Wilber Corp", "2", 20));
+            stockList.add(new StockItem("Sapphire", 3000, "Kyogre Inc", "3", 30));
+            stockList.add(new StockItem("Emerald", 4000, "Grune Enterprise", "4", 40));
+            exportStockList();
         }
         mainMenu();
     }
-
 
 }
 
