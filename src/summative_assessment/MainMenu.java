@@ -23,7 +23,7 @@ public class MainMenu {
     }
 
     private void mainMenu() {
-        System.out.println("welcome to Wilbur's Emporium!");
+        System.out.println("Welcome to Wilbur's Emporium!");
         System.out.println("What would you like to do today?");
         System.out.println("1 - View the stock list.");
         System.out.println("2 - Add a new item.");
@@ -68,6 +68,24 @@ public class MainMenu {
     }
 
     private void removeItem() {
+        //String itemDeletion;
+        // System.out.println("enter item ID for deletion.");
+        // itemDeletion = (scn.nextLine());
+        int index = -1;
+        String itemDeletion = "1";
+        for (StockItem i : stockList) {
+            if (i.productID.equals(itemDeletion)) {
+                index = stockList.indexOf(i);
+                System.out.println("Valid user entered.");
+            } else {
+            }
+        }
+        if (index != -1) {
+            stockList.remove(index); // got errors when this .remove was placed in the first if statement of this method
+            System.out.println("Item ID [" + itemDeletion + "] has been deleted. ");
+        } else {
+            System.out.println("Invalid ID entered");
+        }
         mainMenu();
     }
 
