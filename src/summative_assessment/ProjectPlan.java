@@ -3,6 +3,12 @@ package summative_assessment;
 public class ProjectPlan {
 }
 
+// Task 3
+// Amend mainMenu to include additional options
+// New item functionality
+// Remove item functionality
+// Update item functionality
+
 
 
 //Task 2

@@ -13,7 +13,6 @@ public class MainMenu {
         MainMenu startProgram = new MainMenu();
         startProgram.populateList();
         startProgram.mainMenu();
-
     }
 
     private void populateList() {
@@ -38,7 +37,6 @@ public class MainMenu {
                 break;
             default:
                 return;
-
         }
 
     }
@@ -51,7 +49,6 @@ public class MainMenu {
 
         mainMenu();
     }
-
 
 }
 
