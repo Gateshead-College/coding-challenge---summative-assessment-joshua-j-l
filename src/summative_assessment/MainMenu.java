@@ -1,23 +1,17 @@
 package summative_assessment;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
+import models.StockItem;
 
+import java.io.*;
+import java.util.Scanner;
 
 public class MainMenu {
 
-    ArrayList<StockItem> stockList = new ArrayList();
-    ArrayList<StockItem> mainImportList = new ArrayList();
     Scanner scn = new Scanner(System.in);
-    int editUser = 0;
+    int editUser = 0; //for removing user
 
-    public static void main(String[] args) {
-        MainMenu startProgram = new MainMenu();
-        startProgram.importStockList();
-    }
+    public void mainMenu() {
 
-    private void mainMenu() {
         System.out.println("Welcome to Wilbur's Emporium!");
         System.out.println("What would you like to do today?");
         System.out.println("1 - View the stock list.");
@@ -50,7 +44,7 @@ public class MainMenu {
                 exportStockList();
                 break;
             case 6:
-                importStockList();
+                System.out.println("not available atm");
                 break;
             case 7:
                 System.out.println("Have a nice day!");
@@ -71,7 +65,7 @@ public class MainMenu {
         String d = (scn.nextLine());
         System.out.println("please input the number in stock");
         Integer e = Integer.valueOf(scn.nextLine());
-        stockList.add(new StockItem(a, b, c, d, e));
+        Startup.stockList.add(new StockItem(a, b, c, d, e));
         exportStockList();
         mainMenu();
     }
@@ -82,18 +76,18 @@ public class MainMenu {
         // itemDeletion = (scn.nextLine());
         int index = -1;
         String itemDeletion = (scn.nextLine());
-        for (StockItem i : stockList) {
+        for (StockItem i : Startup.stockList) {
             if (i.productID.equals(itemDeletion)) {
-                index = stockList.indexOf(i);
+                index = Startup.stockList.indexOf(i);
                 System.out.println("Valid ID entered.");
             } else {
             }
         }
         if (index != -1 && editUser == 0) {
-            stockList.remove(index);
+            Startup.stockList.remove(index);
             System.out.println("Item ID [" + itemDeletion + "] has been deleted. ");
         } else if (index != -1 && editUser == 1) {
-            stockList.remove(index);
+            Startup.stockList.remove(index);
             editUser = 0;
             addItem();
         } else {
@@ -104,7 +98,7 @@ public class MainMenu {
     }
 
     private void viewStockList() {
-        for (StockItem i : stockList) {
+        for (StockItem i : Startup.stockList) {
             System.out.println("ID [" + i.productID + "] - Amount [" + i.manufacturer +
                     "] - Name [" + i.name + "] - Price [" + i.price + "] - Stock [" + i.numberInStock + "]");
         }
@@ -115,7 +109,7 @@ public class MainMenu {
         try {
             BufferedWriter exportList = new BufferedWriter(
                     new FileWriter("C:\\Users\\joshua.lawlor\\OneDrive - Accenture\\Desktop\\SummativeAssessmentOutput.txt"));
-            for (StockItem i : stockList) {
+            for (StockItem i : Startup.stockList) {
                 String a = i.name + "\n";
                 String b = String.valueOf(i.price) + "\n";
                 String c = i.manufacturer + "\n";
@@ -131,53 +125,5 @@ public class MainMenu {
         mainMenu();
     }
 
-    public void importStockList() {
-        try {
-            BufferedReader importList = new BufferedReader(
-                    new FileReader("C:\\Users\\joshua.lawlor\\OneDrive - Accenture\\Desktop\\SummativeAssessmentOutput.txt"));
-            String s;
-            int counter = 1;
-            String importName = "Blank";
-            int importPrice = -1;
-            String importManufacturer = "Blank";
-            String importProductID = "Blank";
-            int importNumberInStock;
-            while ((s = importList.readLine()) != null) {
-                if (counter == 1) {
-                    importName = s;
-                    counter = 2;
-                } else if (counter == 2) {
-                    importPrice = Integer.parseInt(s);
-                    counter = 3;
-                } else if (counter == 3) {
-                    importManufacturer = s;
-                    counter = 4;
-                } else if (counter == 4) {
-                    importProductID = s;
-                    counter = 5;
-                } else if (counter == 5) {
-                    importNumberInStock = Integer.parseInt(s);
-                    ;
-                    counter = 1;
-                    mainImportList.add(new StockItem(importName, importPrice, importManufacturer, importProductID, importNumberInStock));
-                } else {
-                }
-            }
-            importList.close();
-
-            for (StockItem i : mainImportList) {
-                System.out.println("ID [" + i.productID + "] - Amount [" + i.manufacturer +
-                        "] - Name [" + i.name + "] - Price [" + i.price + "] - Stock [" + i.numberInStock + "]");
-            }
-            System.out.println(mainImportList.size());
-        } catch (Exception ex) {
-            stockList.add(new StockItem("Diamond", 1000, "Wilber Corp", "1", 10));
-            stockList.add(new StockItem("Ruby", 2000, "Wilber Corp", "2", 20));
-            stockList.add(new StockItem("Sapphire", 3000, "Kyogre Inc", "3", 30));
-            stockList.add(new StockItem("Emerald", 4000, "Grune Enterprise", "4", 40));
-            exportStockList();
-        }
-        mainMenu();
-    }
 
 }

@@ -1,8 +1,8 @@
-package summative_assessment;
+package models;
 
 public class User {
-    String username;
-    String password;
+    public String username;
+    public String password;
 
     public User(String username, String password) {
         this.username = username;
