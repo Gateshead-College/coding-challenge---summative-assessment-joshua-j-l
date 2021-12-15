@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 public class LoginMenu {
 
-    ArrayList<User> userList = new ArrayList();
+    public static ArrayList<User> userList = new ArrayList();
     Scanner scn = new Scanner(System.in);
-    String inputedUser;
+    public static String inputedUser;
     String inputedPassword;
 
     public void login() {

@@ -19,7 +19,7 @@ public class MainMenu {
         System.out.println("3 - Remove an item.");
         System.out.println("4 - Edit an item.");
         System.out.println("5 - Export List.");
-        System.out.println("6 - Import List");
+        System.out.println("6 - Account Settings");
         System.out.println("7 - Leave the Emporium.");
         Integer mainMenuChoice = Integer.valueOf(scn.nextLine());
         switch (mainMenuChoice) {
@@ -44,7 +44,8 @@ public class MainMenu {
                 exportStockList();
                 break;
             case 6:
-                System.out.println("not available atm");
+                AccountsSettingsView accountsSettingsView = new AccountsSettingsView();
+                accountsSettingsView.accountSettingsMenu();
                 break;
             case 7:
                 System.out.println("Have a nice day!");
