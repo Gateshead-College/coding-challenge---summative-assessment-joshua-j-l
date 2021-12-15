@@ -3,6 +3,13 @@ package summative_assessment;
 public class ProjectPlan {
 }
 
+
+//Task 2.3
+// create account settings controller
+//create account settings view
+//amend main menu
+
+
 //Task 2.2
 //Add additional fields to the user class
 
