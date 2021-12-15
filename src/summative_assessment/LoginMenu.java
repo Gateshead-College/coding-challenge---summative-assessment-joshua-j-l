@@ -13,8 +13,8 @@ public class LoginMenu {
     String inputedPassword;
 
     public void login() {
-        userList.add(new User("aaa", "aaa"));
-        userList.add(new User("bbb", "bbb"));
+        userList.add(new User("aaa", "aaa", "aaa", "aaa", "aaa", true));
+        userList.add(new User("bbb", "bbb", "bbb", "bbb", "bbb",  false));
         System.out.println("Welcome!");
         System.out.println("Please enter a username.");
         inputedUser = (scn.nextLine());
