@@ -62,10 +62,6 @@ public class Startup {
         }
 
         LoginMenu loginMenu = new LoginMenu();
-        loginMenu.login();
+        loginMenu.importUserList();
     }
-
-
-
-
 }
