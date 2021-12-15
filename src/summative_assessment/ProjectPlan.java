@@ -3,7 +3,8 @@ package summative_assessment;
 public class ProjectPlan {
 }
 
-
+//Task 2.2
+//Add additional fields to the user class
 
 //Task 2.1
 //create a user data model
