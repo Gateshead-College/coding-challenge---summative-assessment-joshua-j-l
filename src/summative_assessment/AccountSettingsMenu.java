@@ -3,6 +3,8 @@ package summative_assessment;
 import models.StockItem;
 import models.User;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class AccountSettingsMenu {
@@ -31,7 +33,7 @@ public class AccountSettingsMenu {
         System.out.println("Please enter new password");
         b = (scn.nextLine());
         LoginMenu.userList.add(new User(a, b, c, d, e, f));
-        accountsSettingsView.accountSettingsMenu();
+        exportUserList();
     }
 
     public void displayUserInfo() {
@@ -48,4 +50,33 @@ public class AccountSettingsMenu {
         MainMenu mainMenu = new MainMenu();
         mainMenu.mainMenu();
     }
+
+    public void exportUserList() {
+        try {
+            BufferedWriter exportList = new BufferedWriter(
+                    new FileWriter("C:\\Users\\joshua.lawlor\\OneDrive - Accenture\\Desktop\\SummativeAssessmentUserOutput.txt"));
+            for (User i : LoginMenu.userList) {
+                String a = i.username + "\n";
+                String b = i.password + "\n";
+                String c = i.forename + "\n";
+                String d = i.surname + "\n";
+                String e = i.ID + "\n";
+                String f = i.admin + "\n";
+                exportList.write(a + b + c + d + e + f);
+            }
+            exportList.close();
+
+        } catch (Exception ex) {
+            return;
+        }
+        accountsSettingsView.accountSettingsMenu();
+    }
+
+
+
+
+
+
+
+
 }
