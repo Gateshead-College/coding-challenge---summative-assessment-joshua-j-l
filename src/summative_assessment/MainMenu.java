@@ -72,9 +72,6 @@ public class MainMenu {
     }
 
     private void removeItem() {
-        //String itemDeletion;
-        // System.out.println("enter item ID for deletion.");
-        // itemDeletion = (scn.nextLine());
         int index = -1;
         String itemDeletion = (scn.nextLine());
         for (StockItem i : Startup.stockList) {

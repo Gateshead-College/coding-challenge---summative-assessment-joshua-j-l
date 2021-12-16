@@ -1,6 +1,5 @@
 package summative_assessment;
 
-import models.StockItem;
 import models.User;
 
 import java.io.BufferedWriter;
@@ -10,6 +9,7 @@ import java.util.Scanner;
 public class AccountSettingsMenu {
     Scanner scn = new Scanner(System.in);
     AccountsSettingsView accountsSettingsView = new AccountsSettingsView();
+    AdminAccountView aav = new AdminAccountView();
 
     // function for password editing
     public void editPasswords() {
@@ -19,6 +19,8 @@ public class AccountSettingsMenu {
         String d = "";
         String e = "";
         Boolean f = false;
+        int removeIndex = -1; // has to be int, not Integer, for the .remove method to work!!!
+
         for (User i : LoginMenu.userList) {
             if (i.username.equalsIgnoreCase(LoginMenu.inputedUser)) {
                 a = i.username;
@@ -27,16 +29,20 @@ public class AccountSettingsMenu {
                 d = i.surname;
                 e = i.ID;
                 f = i.admin;
-                LoginMenu.userList.remove(i);
+                removeIndex = LoginMenu.userList.indexOf(i);
+            } else {
             }
         }
+        LoginMenu.userList.remove(removeIndex);
         System.out.println("Please enter new password");
         b = (scn.nextLine());
         LoginMenu.userList.add(new User(a, b, c, d, e, f));
         exportUserList();
+        accountsSettingsView.accountSettingsMenu();
     }
 
     public void displayUserInfo() {
+
         for (User i : LoginMenu.userList) {
             if (i.username.equalsIgnoreCase(LoginMenu.inputedUser)) {
                 System.out.println("ID [" + i.username + "] - Amount [" + i.password +
@@ -44,6 +50,18 @@ public class AccountSettingsMenu {
             }
         }
         accountsSettingsView.accountSettingsMenu();
+    }
+
+    public void checkAdmin() {
+        for (User i : LoginMenu.userList) {
+            if (String.valueOf(i.admin).equalsIgnoreCase("true") && i.username.equalsIgnoreCase(LoginMenu.inputedUser)) {
+                System.out.println("Access to admin menu granted!");
+                aav.adminAccountMenu();
+            } else {
+                System.out.println("User is not an admin!");
+                accountsSettingsView.accountSettingsMenu();
+            }
+        }
     }
 
     public void returnMainMenu() {
@@ -69,14 +87,6 @@ public class AccountSettingsMenu {
         } catch (Exception ex) {
             return;
         }
-        accountsSettingsView.accountSettingsMenu();
     }
-
-
-
-
-
-
-
-
 }
+

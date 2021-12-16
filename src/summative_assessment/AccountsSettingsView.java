@@ -13,7 +13,8 @@ public class AccountsSettingsView {
         System.out.println("What would you like to do today?");
         System.out.println("1 - Edit password");
         System.out.println("2 - Check user details");
-        System.out.println("3 - Return to main menu");
+        System.out.println("3 - Admin Options");
+        System.out.println("4 - Return to main menu");
         Integer accountsMenuChoice = Integer.valueOf(scn.nextLine());
         switch (accountsMenuChoice) {
             case 1:
@@ -23,6 +24,9 @@ public class AccountsSettingsView {
                 accountSettingsMenuController.displayUserInfo();
                 break;
             case 3:
+                accountSettingsMenuController.checkAdmin();
+                break;
+            case 4:
                 System.out.println("Taking you back to main menu...");
                 accountSettingsMenuController.returnMainMenu();
                 break;
